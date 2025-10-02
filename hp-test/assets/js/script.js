@@ -11,7 +11,8 @@
     const closeTriggers = nav ? nav.querySelectorAll("[data-close]") : [];
     const navListContainer = document.getElementById("nav-list");
     /* PATCH: 2025-10-02 */
-    const sections = document.querySelectorAll("main section.scroll-point[id]");
+    const sections = Array.from(document.querySelectorAll("main section.scroll-point[id]"))
+      .filter((section) => section.id !== "hero"); // heroセクションを除外
 
     // 大学ロゴをPC用ヘッダーに複製
     const mobileLogo = document.querySelector(".logo-university img");
@@ -26,7 +27,7 @@
       const navList = document.createElement("ul");
       sections.forEach((section) => {
         const title = section.getAttribute("data-title");
-        if (!title) return;
+        if (!title || section.id === "hero") return; // トップセクションを除外
         const listItem = document.createElement("li");
         const dataClass = section.getAttribute("data-class");
         const dataAccordion = section.getAttribute("data-accordion");
@@ -152,23 +153,74 @@
       });
     };
 
+    let isScrolling = false; // スクロール中かどうかを示すフラグ
+
     const updateCurrentNav = () => {
+      if (isScrolling) return;
+
       const navItems = document.querySelectorAll("#g-nav .nav-default");
       if (!navItems.length || !sectionOffsets.length) return;
+
       const scroll = Math.round(window.scrollY);
-      navItems.forEach((item) => {
-        item.classList.remove("current");
+
+      navItems.forEach((item, index) => {
+        item.classList.add("current"); // 全てのナビゲーションを常に表示
       });
-      let activeIndex = sectionOffsets.length - 1;
-      for (let i = 0; i < sectionOffsets.length; i += 1) {
-        const nextOffset = sectionOffsets[i + 1] ?? Number.POSITIVE_INFINITY;
-        if (scroll >= sectionOffsets[i] && scroll < nextOffset) {
-          activeIndex = i;
-          break;
-        }
-      }
-      navItems[activeIndex]?.classList.add("current");
     };
+
+    // スクロール位置に基づいてナビゲーションを更新
+    const updateNavigation = () => {
+      const navLinks = document.querySelectorAll("#nav-list a");
+      const sections = document.querySelectorAll("main section.scroll-point[id]");
+      let activeSection = null;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
+          activeSection = section;
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (activeSection && link.getAttribute("href") === `#${activeSection.id}`) {
+          link.classList.add("active");
+        }
+      });
+    };
+
+    // スクロールイベントでナビゲーションを更新
+    window.addEventListener("scroll", updateNavigation);
+
+    // ナビゲーションのクリック挙動を修正
+    const navLinksClick = document.querySelectorAll("#nav-list a");
+    navLinksClick.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const targetId = link.getAttribute("href").substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          const headerHeight = document.getElementById("header").offsetHeight;
+          const offset = targetSection.offsetTop - headerHeight;
+
+          // スクロール処理
+          window.scrollTo({
+            top: offset,
+            behavior: "smooth",
+          });
+
+          // クリックされたリンクを強制的にアクティブに設定
+          navLinksClick.forEach((navLink) => navLink.classList.remove("active"));
+          link.classList.add("active");
+        }
+      });
+    });
+
+    // 初期状態で何も選択されないようにする
+    window.addEventListener("load", () => {
+      const navLinks = document.querySelectorAll("#nav-list a");
+      navLinks.forEach((link) => link.classList.remove("active"));
+    });
 
     window.addEventListener("load", () => {
       updateOffsets();
@@ -184,12 +236,43 @@
 
     window.addEventListener("scroll", () => {
       updateCurrentNav();
+      updateNavigation();
     });
 
     setTimeout(() => {
       updateOffsets();
       updateCurrentNav();
     }, 400);
+
+    // calculateSectionOffsets関数を定義
+    const calculateSectionOffsets = () => {
+      sectionOffsets = Array.from(document.querySelectorAll("main section.scroll-point[id]"))
+        .map((section) => {
+          const headerHeight = header ? header.offsetHeight : 0;
+          return Math.round(section.offsetTop - headerHeight);
+        });
+      console.log("Recalculated Section Offsets:", sectionOffsets);
+    };
+
+    document.querySelectorAll("#nav-list a").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const targetId = link.getAttribute("href").replace("#", "");
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          const headerHeight = header ? header.offsetHeight : 0;
+          const targetOffset = targetSection.offsetTop - headerHeight;
+
+          console.log("Target Section ID:", targetId);
+          console.log("Target Offset:", targetOffset);
+
+          window.scrollTo({
+            top: targetOffset,
+            behavior: "smooth",
+          });
+        }
+      });
+    });
   });
 })();
 

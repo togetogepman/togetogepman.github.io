@@ -260,7 +260,8 @@ nav .overlay {
 }
 
 .main-contents {
-  margin: 66px 0 0
+  margin: 66px 0 0;
+  padding: 0;
 }
 
 section {
@@ -591,15 +592,13 @@ h4 {
 }
 
 #contact {
-  background: var(--color-key-2)
+  background: #f0f0f0; /* 背景色を薄いグレーに変更 */
+  color: #333; /* 全体の文字色を濃いグレーに変更 */
+  text-align: left; /* 左寄せに変更 */
 }
 
 #contact h2 {
-  color: var(--color-white)
-}
-
-#contact h2:after {
-  background-color: var(--color-white)
+  color: #000; /* 見出しの文字色を黒に変更 */
 }
 
 .contact-wrapp {
@@ -622,7 +621,9 @@ h4 {
 
 .contact-text {
   font-size: 1pc;
-  line-height: 1.6
+  line-height: 1.6;
+  color: #555; /* テキストの文字色を濃いグレーに変更 */
+  text-align: left; /* テキストも左寄せに変更 */
 }
 
 .contact-btn {
@@ -1885,4 +1886,31 @@ html { scroll-padding-top: 96px; }
 .section__label, .section__title { 
   visibility: visible !important; 
   opacity: 1 !important; 
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* 他の要素よりも高い値に設定 */
+  height: 60px; /* ヘッダーの高さを固定 */
+}
+
+body {
+  padding-top: 60px; /* ヘッダーの高さと一致させる */
+}
+
+#contact {
+  margin-top: 80px; /* ヘッダーとの間隔を調整 */
+}
+
+.section__header {
+  position: static; /* 固定位置を解除 */
+  z-index: auto; /* z-indexの影響を排除 */
+}
+
+.section__title {
+  text-align: left; /* 中央揃えを解除 */
+  margin: 0; /* 不要な余白を削除 */
 }
