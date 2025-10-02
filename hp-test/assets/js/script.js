@@ -353,7 +353,7 @@
     });
     var swiper2 = new Swiper(".mySwiper2", {
       spaceBetween: 10,
-      // autoHeight: true,
+      autoHeight: true,
       simulateTouch: false,
       thumbs: {
         swiper: swiper,
