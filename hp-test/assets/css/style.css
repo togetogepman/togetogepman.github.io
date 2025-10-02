@@ -1238,7 +1238,7 @@ footer {
     margin-top: 30px
   }
 
-  */.contact-wrapp {
+  .contact-wrapp {
     gap: 750pt
   }
 
@@ -1675,7 +1675,7 @@ footer {
 @media(min-width:768px) {
   .main-contents {
     margin: 83px 0 0;
-    margin-left: 0;
+    margin-left: 250;
   }
 
   .section {
@@ -1716,7 +1716,7 @@ footer {
 }
 @media(min-width:1024px) {
   .main-contents {
-    margin-left: 0;
+    margin-left: 250;
   }
 
   .section__inner {
@@ -1851,4 +1851,38 @@ footer {
   .cards--logo {
     grid-template-columns: 1fr;
   }
+}
+
+/* Safety override: sidebar overlap */
+@media(min-width:768px){ .main-contents { margin-left: 250px !important; } }
+
+/* 1) ヘッダーは固定・最前面・白背景（透過はNG） */
+#header, header {
+  position: fixed !important;
+  top: 0; left: 0; right: 0;
+  z-index: 10000 !important;
+  background: #fff !important;         /* 透明にすると背面のCONTACT等が透ける */
+  border-bottom: 1px solid #d4dbe1;
+}
+
+/* 2) 本文は“ヘッダー高”ぶんだけ下げる（テーマ既定に合わせる） */
+.main-contents { margin-top: 66px !important; }     /* SP既定 */
+@media (min-width: 769px) {
+  .main-contents { margin-top: 83px !important; }   /* PC既定 */
+}
+
+/* 3) アンカー(#contact 等)へ飛んだとき見出しが隠れない */
+html { scroll-padding-top: 96px; }
+
+/* 4) contact の白箱がヘッダーに密着しないよう少し余裕を足す（任意） */
+#contact .section__header { margin-top: 8px; }
+#contact .contact-wrapp { margin-top: 12px; }
+
+/* 5) contact のボタンだけが上に食い込む挙動の抑止（テーマ既定は -46px） */
+#contact .contact-btn { margin-top: 0 !important; }
+
+/* 6) セクション見出しが消える問題の保険（以前の力技で隠していた場合の解除） */
+.section__label, .section__title { 
+  visibility: visible !important; 
+  opacity: 1 !important; 
 }
