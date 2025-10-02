@@ -1737,55 +1737,131 @@ footer {
   }
 }
 
-/* ===============================
-   PATCH: heroを「写真だけ」に近づける
-   =============================== */
-
-/* 1) Heroの過剰な高さ/オーバーレイを無効化し、画像は欠けさせない */
-.hero { 
-  min-height: auto !important;
-  padding: 0 !important;
+/* PATCH: 2025-10-02 hero/header layout adjustments */
+#hero.section.hero {
+  padding: 0;
+  min-height: auto;
   display: block;
+  gap: 0;
 }
-.hero__content { 
-  display: none; /* 写真のみの見え方に（あとで戻したくなったらここを消す） */
+
+#hero .mv {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 0 16px;
 }
-.hero__media, .hero__media img {
+
+#hero .mv picture {
+  display: block;
   width: 100%;
 }
-.hero__media img {
-  height: auto !important;        /* 固定高を外す */
-  object-fit: contain !important; /* 欠け防止（カバーではなく“収める”） */
-  object-position: center;
+
+#hero .mv img {
   display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
 }
 
-/* 2) バックアップの .mv と同じノリの余白に寄せる */
-.hero + .section { 
-  margin-top: 48px;  /* 次セクションとの間隔を控えめに（必要に応じて調整） */
+#hero + .section {
+  margin-top: 48px;
 }
 
-/* ===============================
-   PATCH: 左固定ヘッダーの余白を締める
-   =============================== */
-#header { 
-  padding-block: 8px !important;     /* トップ/ボトム余白を縮小 */
+#header {
+  padding: 12px 16px;
 }
-.header-name-wrapp { 
-  line-height: 1.2;
+
+.header-contents {
+  align-items: center;
+  gap: 12px;
 }
-.header-name-wrapp-ja,
+
+.header-title {
+  gap: 8px;
+}
+
+.header-box {
+  width: 24px;
+  height: 24px;
+}
+
+.header-box img {
+  width: 100%;
+  height: auto;
+}
+
+.header-name-wrapp {
+  line-height: 1.1;
+}
+
+.header-name-wrapp-ja {
+  font-size: clamp(13px, 1.3vw, 15px);
+}
+
 .header-name-wrapp-en {
-  margin: 0;
-  font-size: clamp(14px, 1.6vw, 16px); /* 文字数が減っても大きくなりすぎない */
-}
-.header-box img { 
-  height: 24px;                       /* ロゴを少し小さめに固定（元の印象へ） */
+  margin-top: 2px;
+  font-size: clamp(11px, 1.1vw, 13px);
 }
 
-/* PC限定で大学ロゴ領域のスペースを詰める */
+.logo-university-pc.is-pc img {
+  max-height: 24px;
+  width: auto;
+}
+
+.section__inner {
+  max-width: 960px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.cards--3col,
+.cards--logo {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cards__media img,
+.profile__image img,
+.mv img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (min-width: 768px) {
+  #hero.section.hero {
+    padding: 0;
+    display: block;
+  }
+}
+
 @media (min-width: 1024px) {
-  .logo-university-pc.is-pc img {
-    max-height: 28px;   /* ここを上げ下げで“左の余白感”を微調整 */
+  #hero.section.hero {
+    display: block;
+  }
+}
+
+@media (max-width: 1024px) {
+  .cards--3col,
+  .cards--logo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  #header {
+    padding: 10px 14px;
+  }
+
+  .section__inner {
+    padding-inline: 16px;
+  }
+
+  .cards--3col,
+  .cards--logo {
+    grid-template-columns: 1fr;
   }
 }
