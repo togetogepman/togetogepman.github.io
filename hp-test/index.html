@@ -1,742 +1,399 @@
+﻿<!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>研究者WEBサイトテンプレート</title>
-    <meta name="description" content="研究者WEBサイトテンプレート" />
-    <link rel="icon" href="./assets/images/common/favicon.ico" sizes="any" />
-    <!-- 32×32 -->
-    <link
-      rel="icon"
-      href="./assets/images/common/icon.svg"
-      type="image/svg+xml"
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NovaLink Solutions株式会社 | B2B向けデジタルソリューション支援</title>
+    <meta
+      name="description"
+      content="NovaLink Solutions株式会社は、B2B企業のデジタル戦略設計から導入・運用までをワンストップで支援するコンサルティングチームです。"
     />
+    <link rel="icon" href="./assets/images/common/favicon.ico" sizes="any" />
+    <link rel="icon" href="./assets/images/common/icon.svg" type="image/svg+xml" />
     <link
       rel="apple-touch-icon"
-      href="./assets/images/common/apple-touch-icon.png"
+      href="./assets/images/common/apple_touch_icon.png"
     />
-    <!-- 180×180 -->
-    <!-- og -->
-    <meta property="og:url" content="" />
+    <meta property="og:url" content="https://example.com/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="研究者WEBサイトテンプレート" />
+    <meta
+      property="og:title"
+      content="NovaLink Solutions | デジタルソリューションでB2B事業を前進"
+    />
     <meta property="og:image" content="./assets/images/common/ogp.jpg" />
-    <meta property="og:description" content="研究者WEBサイトテンプレート" />
-    <meta property="og:site_name" content="研究者WEBサイトテンプレート" />
+    <meta
+      property="og:description"
+      content="データドリブンな戦略立案とプロダクト開発でB2Bビジネスの成長を後押しします。"
+    />
+    <meta property="og:site_name" content="NovaLink Solutions" />
     <meta property="og:locale" content="ja_JP" />
-    <!-- x -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:title" content="研究者WEBサイトテンプレート" />
-    <meta name="twitter:description" content="研究者WEBサイトテンプレート" />
+    <meta name="twitter:url" content="https://example.com/" />
+    <meta
+      name="twitter:title"
+      content="NovaLink Solutions | デジタルソリューションでB2B事業を前進"
+    />
+    <meta
+      name="twitter:description"
+      content="データドリブンな戦略立案とプロダクト開発でB2Bビジネスの成長を後押しします。"
+    />
     <meta name="twitter:image" content="./assets/images/common/ogp.jpg" />
-    <meta name="twitter:image:alt" content="研究者WEBサイトテンプレート" />
+    <meta name="twitter:image:alt" content="NovaLink Solutionsのプロジェクト事例" />
     <meta name="twitter:dnt" content="on" />
-    <!-- fonts -->
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap");
     </style>
-    <!-- style sheet -->
     <link rel="stylesheet" href="./assets/css/destyle.css" />
-    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/simplebar@latest/dist/simplebar.css"
-    />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <!-- Javascript -->
-    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
     <script src="./assets/js/library.js"></script>
-    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/script.js" defer></script>
   </head>
-
-  <!-- START ここからデザインの要素を入れていく -->
   <body>
-    <!-- START header -->
     <header id="header">
       <div class="header-contents">
-        <a href="#" class="header-title">
+        <a href="#hero" class="header-title" aria-label="トップへ戻る">
           <div class="header-box">
-            <img src="assets/images/logo-lab.svg"/>
+            <img src="assets/images/logo-lab.svg" alt="NovaLink Solutions" />
           </div>
           <div class="header-name">
             <h1 class="header-name-wrapp">
-              <span class="header-name-wrapp-ja"
-                >コミュニケーションデザインラボ - 佐藤研究室</span
-              >
-              <span class="header-name-wrapp-en"
-                >Communication Design Laboratory</span
-              >
+              <span class="header-name-wrapp-ja">NovaLink Solutions株式会社</span>
+              <span class="header-name-wrapp-en">NovaLink Solutions Inc.</span>
             </h1>
           </div>
         </a>
-        <button id="burger" class="is-sp" type="button">
+        <button id="burger" class="is-sp" type="button" aria-expanded="false">
           <span class="header-burger"></span>
           <span class="header-burger"></span>
           <span class="header-burger"></span>
         </button>
       </div>
       <div class="logo-university-pc is-pc">
-        <img src="" alt="" />
+        <img src="assets/images/logo-lab.svg" alt="NovaLink Solutions" />
       </div>
     </header>
-    <!-- END header -->
-
     <main>
-      <!-- START グローバルナビ -->
       <nav id="g-nav">
         <div class="nav-inner">
           <p>Menu</p>
           <div id="nav-list"></div>
           <div class="logo-university">
-            <img src="assets/images/logo-university.svg"/>
+            <img src="assets/images/logo-lab.svg" alt="NovaLink Solutions" />
           </div>
         </div>
-        <span class="overlay"></span>
+        <span class="overlay" data-close></span>
       </nav>
-      <!-- END グローバルナビ -->
       <div class="main-contents">
-        <!-- START メインビジュアル -->
-        <div class="mv">
-          <picture class="mv">
-            <img src="./assets/images/sample-mv.png" alt="Example image" />
-          </picture>
-        </div>
-        <!-- END メインビジュアル -->
-
-        <!-- START NEWS -->
+        <!-- BEGIN: hero -->
         <section
+          id="hero"
+          class="scroll-point section hero"
           data-accordion="normal"
           data-class="nav-default"
-          data-title="NEWS"
-          id="news"
-          class="scroll-point"
+          data-title="トップ"
         >
-          <h2>NEWS</h2>
-          <ul class="news-li-wrapp">
-            <li class="news-item is-link" data-more="">
-              <div class="news-date">2023.10.05</div>
-              <div class="news-text">
-                <div class="news-title">
-                  [学年]の[研究室のメンバーの名前]君が[学会の名前]で[賞の名前]を受賞しました。
-                </div>
-                <a href="#" target="_blank" class="link"
-                  >記事を見る<span class="ico"
-                    ><svg viewBox="0 0 14 12">
-                      <use
-                        xlink:href="./assets/images/ico/splite.svg#ico-link"
-                      ></use></svg></span
-                ></a>
-              </div>
-            </li>
-            <li class="news-item is-link" data-more="">
-              <div class="news-date">2023.10.05</div>
-              <div class="news-text">
-                <div class="news-title">
-                  [研究室名]では新しい研究プロジェクトを開始しました。このプロジェクトでは[研究のテーマや目的]に焦点を当てています。
-                </div>
-                <a href="#" target="_blank" class="link"
-                  >記事を見る<span class="ico"
-                    ><svg viewBox="0 0 14 12">
-                      <use
-                        xlink:href="./assets/images/ico/splite.svg#ico-link"
-                      ></use></svg></span
-                ></a>
-              </div>
-            </li>
-            <li class="news-item is-link" data-more="">
-              <div class="news-date">2023.10.05</div>
-              <div class="news-text">
-                <div class="news-title">
-                  新しい論文が[学術雑誌の名前]に掲載されました。この論文では[論文の主題や重要な発見]について論じています。
-                </div>
-                <a href="#" target="_blank" class="link"
-                  >記事を見る<span class="ico"
-                    ><svg viewBox="0 0 14 12">
-                      <use
-                        xlink:href="./assets/images/ico/splite.svg#ico-link"
-                      ></use></svg></span
-                ></a>
-              </div>
-            </li>
-            <li class="news-item is-link" data-more="">
-              <div class="news-date">2023.10.05</div>
-              <div class="news-text">
-                <div class="news-title">
-                  当研究室は[研究テーマ]に関する共同研究を[他の研究機関や企業の名前]と開始しました。この共同研究により[期待される成果や目的]を目指します。
-                </div>
-                <a href="#" target="_blank" class="link"
-                  >記事を見る<span class="ico"
-                    ><svg viewBox="0 0 14 12">
-                      <use
-                        xlink:href="./assets/images/ico/splite.svg#ico-link"
-                      ></use></svg></span
-                ></a>
-              </div>
-            </li>
-            <li class="news-item is-link" data-more="">
-              <div class="news-date">2023.10.05</div>
-              <div class="news-text">
-                <div class="news-title">
-                  [学年]の[メンバーの名前]君が[学会の名前]において[講演の主題]というテーマで基調講演を行いました。
-                </div>
-                <a href="#" target="_blank" class="link"
-                  >記事を見る<span class="ico"
-                    ><svg viewBox="0 0 14 12">
-                      <use
-                        xlink:href="./assets/images/ico/splite.svg#ico-link"
-                      ></use></svg></span
-                ></a>
-              </div>
-            </li>
-          </ul>
-          <button class="more-btn">
-            <svg viewBox="0 0 13 3">
-              <use xlink:href="./assets/images/ico/splite.svg#ico-more"></use>
-            </svg>
-            もっと見る
-          </button>
-        </section>
-        <!-- END NEWS -->
-
-        <!-- START 研究テーマ -->
-        <section
-          data-accordion="normal"
-          data-class="nav-default"
-          data-title="研究テーマ"
-          id="themes"
-          class="scroll-point"
-        >
-          <h2>研究テーマ</h2>
-          <ul class="theme-wrapp">
-            <li class="theme-item">
-              <h3 class="h3-number">人工知能における機械学習アルゴリズムの最適化</h3>
-              <div class="theme-body">
-                <p>
-                  当研究では、機械学習アルゴリズムの精度と効率を向上させる方法を探求しています。特に、データの前処理、特徴選択、モデル構築の各ステップでの最新の技術を組み合わせることに重点を置いています。
-                </p>
-                <div class="theme-img">
-                  <picture>
-                    <img src="./assets/images/sample-ph-02.png" alt="Example image"/></picture>
-                </div>
-                <p>
-                  この研究により、さまざまな分野での応用が可能なより高度な人工知能システムの開発を目指しています。例えば、医療診断、金融市場分析、自動運転車の技術など、社会に大きな影響を与える分野に貢献することを期待しています。
-                </p>
-              </div>
-            </li>
-            <li class="theme-item">
-              <h3 class="h3-number">再生可能エネルギー源の開発と利用</h3>
-              <div class="theme-body">
-                <p>
-                  本研究では、太陽光、風力、地熱などの再生可能エネルギー源の効率的な活用方法を探求しています。これには、エネルギー変換の効率向上やコスト削減の技術開発が含まれます。
-                  また、再生可能エネルギーの普及を促進するための社会的、経済的な戦略についても研究しています。持続可能なエネルギーシステムの構築に向けて、政策提言や公共啓発活動にも力を入れています。
-                  
-                </p>
-              </div>
-            </li>
-            <li class="theme-item">
-              <h3 class="h3-number">
-                ヒトの健康と疾患に関するバイオテクノロジーの応用
-              </h3>
-              <div class="theme-body">
-                <div class="theme-img">
-                  <picture>
-                    <img src="./assets/images/sample-ph-01.png" alt="Example image" />
-                  </picture>
-                </div>
-                <p>
-                  当研究室では、遺伝子編集技術や幹細胞療法など、最先端のバイオテクノロジーを用いた疾患治療法の開発に取り組んでいます。特に、がんや遺伝性疾患の治療に焦点を当てています。
-                  
-                  さらに、これらの治療法の臨床応用に向けて、安全性と効果の評価を行っています。患者のQOL向上に貢献するとともに、新しい医療技術の普及に向けた研究も進めています。
-                </p>
-              </div>
-            </li>
-          </ul>
-        </section>
-        <!-- END 研究テーマ -->
-
-        <!-- START 研究室のモットー -->
-        <section
-          data-accordion="normal"
-          data-class="nav-default"
-          data-title="研究室のモットー"
-          id="motto"
-          class="scroll-point"
-        >
-          <h2>研究室のモットー</h2>
-          <ul class="motto-wrapp">
-            <li>
-              <h3>知識の探求と社会への貢献</h3>
-              <p>
-                私たちの研究室は、最先端の科学技術を追求し、その成果を社会に還元することをミッションとしています。学術的な探究心と実社会への応用を通じて、世界に貢献することを目指します。
-              </p>
-            </li>
-            <li>
-              <h3>革新と協力の精神</h3>
-              <p>
-                私たちは、研究の革新を目指し、異なる分野や文化の専門家と積極的に協力することを重視します。多様なアイデアと視点を統合することで、新しい発見とソリューションを生み出すことを目標としています。
-              </p>
-            </li>
-          </ul>
-        </section>
-        <!-- END 研究室のモットー -->
-
-        <!-- START 研究室メンバー -->
-        <section
-          data-accordion="normal"
-          data-class="nav-default"
-          data-title="研究室メンバー"
-          id="member"
-          class="scroll-point member"
-        >
-          <h2>研究室メンバー</h2>
-          <ul class="member-wrapp">
-            <li class="member-li-wrapp" data-more="">
-              <h4>博士後期課程</h4>
-              <ul class="member-li">
-                <li class="member-name-li">
-                  <div class="member-name">
-                    <p>佐藤　明子 (3年)</p>
-                    <p>田中　健一 (2年)</p>
-                    <p>鈴木　雅人 (1年)</p>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <li class="member-li-wrapp" data-more="">
-              <h4>博士前期課程</h4>
-              <ul class="member-li">
-                <li class="member-name-li">
-                  <div class="member-name">
-                    <p>伊藤　美咲 (2年)</p>
-                    <p>中村　拓哉 (1年)</p>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <li class="member-li-wrapp" data-more="">
-              <h4>OB / OG</h4>
-              <ul class="member-li">
-                <li class="member-name-li">
-                  <p class="member-year">1978年度</p>
-                  <div class="member-name">
-                    <p>山田　花 (芦田先端技研株式会社)</p>
-                    <p>佐々木　一郎 (星明技術研究所　研究員)</p>
-                  </div>
-                </li>
-                <li class="member-name-li">
-                  <p class="member-year">1979年度</p>
-                  <div class="member-name">
-                    <p>吉田　美香 (帝都大学　研究員)</p>
-                    <p>鈴木　陽一 (株式会社藍原エコエネルギー研究所)</p>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <button class="more-btn">
-            <svg viewBox="0 0 13 3">
-              <use
-                xlink:href="./assets/images/ico/splite.svg#ico-more"
-              ></use></svg
-            >もっと見る
-          </button>
-        </section>
-        <!-- END 研究室メンバー -->
-
-        <!-- START プロフィール -->
-        <section
-          data-accordion="normal"
-          data-class="nav-default"
-          data-title="プロフィール"
-          id="profile"
-          class="scroll-point"
-        >
-          <h2>プロフィール</h2>
-          <div class="profile-wrapp">
-            <div class="profile-info-wrapp">
-              <picture>
-                <img src="./assets/images/sample-profile.png" alt="Example image" />
-              </picture>
-              <div>
-                <div class="profile-info-text-wrapp">
-                  <p class="profile-info-position">教授</p>
-                  <div class="profile-info-name">
-                    <p class="profile-info-name-ja">佐藤 太郎</p>
-                    <p>Sato Taro</p>
-                  </div>
-                </div>
-                <div class="profile-info-link-wrapp is-link">
-                  <a href="#" target="_blank" class="link"
-                    >帝都大学研究者紹介<span class="ico"
-                      ><svg viewBox="0 0 14 12">
-                        <use
-                          xlink:href="./assets/images/ico/splite.svg#ico-link"
-                        ></use></svg></span
-                  ></a>
-                  <a href="#" target="_blank" class="link"
-                    >Google Scholar<span class="ico"
-                      ><svg viewBox="0 0 14 12">
-                        <use
-                          xlink:href="./assets/images/ico/splite.svg#ico-link"
-                        ></use></svg></span
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <ul class="profile-history-wrapp">
-              <li>
-                <h4>経歴</h4>
-                <ul class="profile-history-li">
-                  <li class="profile-history-text-wrapp">
-                    <p class="profile-history-year">2023</p>
-                    <div class="profile-history-text">
-                      <p>帝都大学工学部卒業</p>
-                      <p>帝都大学大学院工学研究科博士前期課程入学</p>
-                    </div>
-                  </li>
-                  <li class="profile-history-text-wrapp">
-                    <p class="profile-history-year">2023</p>
-                    <div class="profile-history-text">
-                      <p>帝都大学大学院工学研究科博士前期課程修了</p>
-                      <p>帝都大学大学院工学研究科博士後期課程入学</p>
-                    </div>
-                  </li>
-                  <li class="profile-history-text-wrapp">
-                    <p class="profile-history-year">2023</p>
-                    <div class="profile-history-text">
-                      <p>帝都大学大学院工学研究科博士後期課程修了</p>
-                    </div>
-                  </li>
-                  <li class="profile-history-text-wrapp">
-                    <p class="profile-history-year">2023</p>
-                    <div class="profile-history-text">
-                      <p>ABCテクノロジー株式会社　研究員</p>
-                    </div>
-                  </li>
-                  <li class="profile-history-text-wrapp">
-                    <p class="profile-history-year">2023</p>
-                    <div class="profile-history-text">
-                      <p>帝都大学　准教授</p>
-                    </div>
-                  </li>
-                  <li class="profile-history-text-wrapp">
-                    <p class="profile-history-year">2023</p>
-                    <div class="profile-history-text">
-                      <p>帝都大学　教授</p>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <h4>受賞歴</h4>
-                <ul class="profile-history-li">
-                  <li class="profile-history-text-wrapp">
-                    <p class="profile-history-year">2023</p>
-                    <div class="profile-history-text">
-                      <p>日本データサイエンス賞受賞</p>
-                    </div>
-                  </li>
-                  <li class="profile-history-text-wrapp">
-                    <p class="profile-history-year">2023</p>
-                    <div class="profile-history-text">
-                      <p>国際AI学会最優秀論文賞</p>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <h4>所属学会</h4>
-                <ul class="profile-history-li">
-                  <li class="profile-history-text-wrapp">
-                    <div class="profile-history-text">
-                      <p>全国人工知能研究学会</p>
-                      <p>アジア人工知能技術学会</p>
-                      <p>先端AIイノベーション学会</p>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+          <div class="hero__media">
+            <img src="./assets/images/sample-mv.png" alt="B2B向けデジタル支援のイメージ" />
+          </div>
+          <div class="hero__content">
+            <p class="hero__tagline">B2Bビジネスの伴走型DXパートナー</p>
+            <h2 class="hero__title">戦略と実装を結ぶデジタルソリューション</h2>
+            <p class="hero__lead">
+              SaaS開発・カスタマーサクセス・データ基盤構築を専門チームが統合し、成果に直結するデジタル戦略を実現します。
+            </p>
+            <button class="hero__cta" type="button" data-scroll-target="#contact">
+              無料相談を予約する
+            </button>
           </div>
         </section>
-        <!-- END プロフィール -->
+        <!-- END: hero -->
 
-        <!-- START 論文・研究発表 -->
+        <!-- BEGIN: about -->
         <section
-          data-accordion="nav-drop"
+          id="about"
+          class="scroll-point section section--tone"
+          data-accordion="normal"
           data-class="nav-default"
-          data-title="論文・研究発表"
-          id="academic"
-          class="scroll-point"
+          data-title="事業概要"
         >
-          <h2>論文・研究発表</h2>
-          <div class="academic-inner">
-            <div thumbsSlider="" class="swiper mySwiper tab">
-              <div class="swiper-wrapper tab-wrapp">
-                <div class="swiper-slide" data-index="論文誌">論文誌</div>
-                <div class="swiper-slide" data-index="学会発表">学会発表</div>
-                <div class="swiper-slide" data-index="外部記事">外部記事</div>
-                <div class="swiper-slide" data-index="書籍">書籍</div>
-                <div class="swiper-slide" data-index="その他">その他</div>
-              </div>
-              <div class="swiper-button-next">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="8"
-                  height="14"
-                  viewBox="0 0 8 14"
-                  fill="none"
-                >
-                  <path
-                    d="M1.41797 12.2077L6.6263 6.99935L1.41797 1.79102"
-                    stroke="#2269D3"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-              <div class="swiper-button-prev">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="8"
-                  height="14"
-                  viewBox="0 0 8 14"
-                  fill="none"
-                >
-                  <path
-                    d="M6.625 12.2067L1.41667 6.99837L6.625 1.79004"
-                    stroke="#2269D3"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
+          <div class="section__inner">
+            <header class="section__header">
+              <p class="section__label">About</p>
+              <h2 class="section__title">事業概要</h2>
+            </header>
+            <div class="section__body section__body--columns">
+              <p>
+                NovaLink Solutions株式会社は、デジタル化が進むB2B市場で事業価値を最大化するための戦略立案から実装支援までをワンストップで提供しています。部門横断のプロジェクト推進とデータ活用を基盤に、成果が見えるDXを実現します。
+              </p>
+              <dl class="definition-list">
+                <div class="definition-list__item">
+                  <dt>会社名</dt>
+                  <dd>NovaLink Solutions株式会社</dd>
+                </div>
+                <div class="definition-list__item">
+                  <dt>所在地</dt>
+                  <dd>東京都千代田区麹町2-14-10</dd>
+                </div>
+                <div class="definition-list__item">
+                  <dt>設立</dt>
+                  <dd>2016年4月</dd>
+                </div>
+                <div class="definition-list__item">
+                  <dt>主な事業領域</dt>
+                  <dd>デジタル戦略コンサルティング、SaaS導入支援、DX内製化支援</dd>
+                </div>
+              </dl>
             </div>
-            <div class="swiper mySwiper2">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide" data-simplebar="">
-                  <ul class="paper">
-                    <li class="list-item is-link">
-                      佐藤 太郎, 佐藤真理子, 吉田章:
-                       「組み込みシステムにおける人工知能の応用と性能改善」,
-                       全国人工知能研究学会論文誌, 第39巻2号, (2024).<span
-                        ><a class="link" href="#" target="_blank"
-                          >外部リンク<span class="ico"
-                            ><svg viewBox="0 0 14 12">
-                              <use
-                                xlink:href="./assets/images/ico/splite.svg#ico-link"
-                              ></use></svg></span></a
-                      ></span>
-                    </li>
+          </div>
+        </section>
+        <!-- END: about -->
 
-                    <li class="list-item">
-                        論文誌_リスト
-                        <span
-                        ><a class="link" href="#" target="_blank"
-                          >外部リンク<span class="ico"
-                            ><svg viewBox="0 0 14 12">
-                              <use
-                                xlink:href="./assets/images/ico/splite.svg#ico-link"
-                              ></use></svg></span></a
-                      ></span>
+        <!-- BEGIN: ceo -->
+        <section
+          id="ceo"
+          class="scroll-point section"
+          data-accordion="normal"
+          data-class="nav-default"
+          data-title="代表メッセージ"
+        >
+          <div class="section__inner section__inner--split">
+            <header class="section__header">
+              <p class="section__label">CEO</p>
+              <h2 class="section__title">代表プロフィール</h2>
+            </header>
+            <div class="section__body section__body--profile">
+              <figure class="profile">
+                <div class="profile__image">
+                  <img src="./assets/images/sample-profile.png" alt="代表取締役 佐藤 悠の写真" />
+                </div>
+                <figcaption class="profile__caption">
+                  <p class="profile__name">代表取締役　佐藤 悠</p>
+                  <p class="profile__position">NovaLink Solutions株式会社 CEO</p>
+                  <p>
+                    B2B SaaS企業でのプロダクト責任者を経て現職。事業計画とプロダクト開発を一体で推進する実行力が評価され、多数の上場企業・スタートアップのDXプロジェクトに参画。データ活用を軸にした組織づくりを得意とします。
+                  </p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+        <!-- END: ceo -->
+
+        <!-- BEGIN: services -->
+        <section
+          id="services"
+          class="scroll-point section section--tone"
+          data-accordion="normal"
+          data-class="nav-default"
+          data-title="サービス"
+        >
+          <div class="section__inner">
+            <header class="section__header">
+              <p class="section__label">Services</p>
+              <h2 class="section__title">サービス詳細と支援フロー</h2>
+            </header>
+            <div class="section__body">
+              <div class="grid grid--services">
+                <article class="card">
+                  <h3 class="card__title">提供サービス</h3>
+                  <ul class="list">
+                    <li>デジタル戦略策定とKPI設計</li>
+                    <li>顧客体験設計とサービスデザイン</li>
+                    <li>業務プロセス可視化と改善ロードマップ構築</li>
+                    <li>プロダクト開発・SaaS導入のPMO支援</li>
+                  </ul>
+                </article>
+                <article class="card card--flow">
+                  <h3 class="card__title">支援フロー</h3>
+                  <ol class="step">
+                    <li class="step__item">
+                      <span class="step__num">01</span>
+                      <div>
+                        <p class="step__heading">課題ヒアリング</p>
+                        <p>現状のプロセス・組織課題を整理し、ゴールを明確化します。</p>
+                      </div>
                     </li>
-                    <li class="list-item">論文誌_リスト</li>
-                    <li class="list-item">論文誌_リスト</li>
-                    <li class="list-item">論文誌_リスト</li>
-                    <li class="list-item">論文誌_リスト</li>
-                    <li class="list-item">論文誌_リスト</li>
-                  </ul>
-                  <button class="load-more">
-                    <svg viewBox="0 0 13 3">
-                      <use
-                        xlink:href="./assets/images/ico/splite.svg#ico-more"
-                      ></use></svg
-                    >もっと見る
-                  </button>
-                </div>
-                <div class="swiper-slide" data-simplebar="">
-                  <ul class="paper">
-                    <li class="list-item">学会発表_リスト</li>
-                    <li class="list-item">学会発表_リスト</li>
-                    <li class="list-item">学会発表_リスト</li>
-                    <li class="list-item">学会発表_リスト</li>
-                    <li class="list-item">学会発表_リスト</li>
-                    <li class="list-item">学会発表_リスト</li>
-                    <li class="list-item">学会発表_リスト</li>
-                    <li class="list-item">学会発表_リスト</li>
-                    <li class="list-item">学会発表_リスト</li>
-                    <li class="list-item">学会発表_リスト</li>
-                    <li class="list-item">学会発表_リスト</li>
-                  </ul>
-                  <button class="load-more">
-                    <svg viewBox="0 0 13 3">
-                      <use
-                        xlink:href="./assets/images/ico/splite.svg#ico-more"
-                      ></use></svg
-                    >もっと見る
-                  </button>
-                </div>
-                <div class="swiper-slide" data-simplebar="">
-                  <ul class="paper">
-                    <li class="list-item">外部記事_リスト</li>
-                    <li class="list-item">外部記事_リスト</li>
-                    <li class="list-item">外部記事_リスト</li>
-                    <li class="list-item">外部記事_リスト</li>
-                    <li class="list-item">外部記事_リスト</li>
-                    <li class="list-item">外部記事_リスト</li>
-                    <li class="list-item">外部記事_リスト</li>
-                    <li class="list-item">外部記事_リスト</li>
-                    <li class="list-item">外部記事_リスト</li>
-                    <li class="list-item">外部記事_リスト</li>
-                    <li class="list-item">外部記事_リスト</li>
-                  </ul>
-                  <button class="load-more">
-                    <svg viewBox="0 0 13 3">
-                      <use
-                        xlink:href="./assets/images/ico/splite.svg#ico-more"
-                      ></use></svg
-                    >もっと見る
-                  </button>
-                </div>
-                <div class="swiper-slide" data-simplebar="">
-                  <ul class="paper">
-                    <li class="list-item">書籍_リスト</li>
-                    <li class="list-item">書籍_リスト</li>
-                    <li class="list-item">書籍_リスト</li>
-                    <li class="list-item">書籍_リスト</li>
-                    <li class="list-item">書籍_リスト</li>
-                    <li class="list-item">書籍_リスト</li>
-                    <li class="list-item">書籍_リスト</li>
-                    <li class="list-item">書籍_リスト</li>
-                    <li class="list-item">書籍_リスト</li>
-                    <li class="list-item">書籍_リスト</li>
-                    <li class="list-item">書籍_リスト</li>
-                  </ul>
-                  <button class="load-more">
-                    <svg viewBox="0 0 13 3">
-                      <use
-                        xlink:href="./assets/images/ico/splite.svg#ico-more"
-                      ></use></svg
-                    >もっと見る
-                  </button>
-                </div>
-                <div class="swiper-slide" data-simplebar="">
-                  <ul class="paper">
-                    <li class="list-item">その他_リスト</li>
-                    <li class="list-item">その他_リスト</li>
-                    <li class="list-item">その他_リスト</li>
-                    <li class="list-item">その他_リスト</li>
-                    <li class="list-item">その他_リスト</li>
-                    <li class="list-item">その他_リスト</li>
-                    <li class="list-item">その他_リスト</li>
-                    <li class="list-item">その他_リスト</li>
-                    <li class="list-item">その他_リスト</li>
-                    <li class="list-item">その他_リスト</li>
-                    <li class="list-item">その他_リスト</li>
-                  </ul>
-                  <button class="load-more">
-                    <svg viewBox="0 0 13 3">
-                      <use
-                        xlink:href="./assets/images/ico/splite.svg#ico-more"
-                      ></use></svg
-                    >もっと見る
-                  </button>
-                </div>
+                    <li class="step__item">
+                      <span class="step__num">02</span>
+                      <div>
+                        <p class="step__heading">戦略設計</p>
+                        <p>顧客・市場データを用いた戦略とロードマップ、指標を策定します。</p>
+                      </div>
+                    </li>
+                    <li class="step__item">
+                      <span class="step__num">03</span>
+                      <div>
+                        <p class="step__heading">実装・検証</p>
+                        <p>プロジェクト推進チームを構成し、開発・導入・検証を伴走します。</p>
+                      </div>
+                    </li>
+                    <li class="step__item">
+                      <span class="step__num">04</span>
+                      <div>
+                        <p class="step__heading">定着化支援</p>
+                        <p>運用設計と人材育成をサポートし、成果が定着するまで支援します。</p>
+                      </div>
+                    </li>
+                  </ol>
+                </article>
               </div>
             </div>
           </div>
         </section>
-        <!-- END 論文・研究発表 -->
+        <!-- END: services -->
 
-        <!-- START Contact -->
+        <!-- BEGIN: works -->
         <section
+          id="works"
+          class="scroll-point section"
           data-accordion="normal"
           data-class="nav-default"
-          data-title="Contact"
+          data-title="実績"
+        >
+          <div class="section__inner">
+            <header class="section__header">
+              <p class="section__label">Cases</p>
+              <h2 class="section__title">実績紹介</h2>
+            </header>
+            <div class="section__body">
+              <div class="cards cards--3col">
+                <article class="cards__item">
+                  <h3 class="cards__title">製造業SaaS企業</h3>
+                  <p class="cards__meta">DX推進室／導入期間：6か月</p>
+                  <p>
+                    データ統合基盤を構築し、営業とサポートが共通指標で運用できる体制へ刷新。受注率が32%向上。
+                  </p>
+                </article>
+                <article class="cards__item">
+                  <h3 class="cards__title">BtoBマーケティング企業</h3>
+                  <p class="cards__meta">マーケティング本部／導入期間：4か月</p>
+                  <p>
+                    MAツールの再設計とプロセス改善により、リードから商談化までのリードタイムを40%短縮。
+                  </p>
+                </article>
+                <article class="cards__item">
+                  <h3 class="cards__title">ITヘルスケア企業</h3>
+                  <p class="cards__meta">事業開発部／導入期間：8か月</p>
+                  <p>
+                    事業ロードマップ策定とCS支援チーム立ち上げを支援し、解約率を前年度比で半減。
+                  </p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- END: works -->
+
+        <!-- BEGIN: partners -->
+        <section
+          id="partners"
+          class="scroll-point section section--tone"
+          data-accordion="normal"
+          data-class="nav-default"
+          data-title="パートナー"
+        >
+          <div class="section__inner">
+            <header class="section__header">
+              <p class="section__label">Partners</p>
+              <h2 class="section__title">パートナー・連携企業</h2>
+            </header>
+            <div class="section__body">
+              <div class="cards cards--logo">
+                <article class="cards__item cards__item--logo">
+                  <div class="cards__media">
+                    <img src="./assets/images/logo-university.svg" alt="TechCore Analytics" />
+                  </div>
+                  <p class="cards__title">TechCore Analytics</p>
+                  <p class="cards__meta">データ基盤構築パートナー</p>
+                </article>
+                <article class="cards__item cards__item--logo">
+                  <div class="cards__media">
+                    <img src="./assets/images/logo-lab.svg" alt="Design Futures" />
+                  </div>
+                  <p class="cards__title">Design Futures</p>
+                  <p class="cards__meta">サービスデザイン支援</p>
+                </article>
+                <article class="cards__item cards__item--logo">
+                  <div class="cards__media">
+                    <img src="./assets/images/ico/splite.svg" alt="Future Talent" />
+                  </div>
+                  <p class="cards__title">Future Talent</p>
+                  <p class="cards__meta">DX人材育成プログラム</p>
+                </article>
+                <article class="cards__item cards__item--logo">
+                  <div class="cards__media cards__media--person">
+                    <img src="./assets/images/sample-ph-01.png" alt="アドバイザー 鈴木 真" />
+                  </div>
+                  <p class="cards__title">鈴木 真</p>
+                  <p class="cards__meta">プロダクト戦略アドバイザー</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- END: partners -->
+
+        <!-- BEGIN: voices -->
+        <section
+          id="voices"
+          class="scroll-point section section--muted"
+          data-accordion="normal"
+          data-class="nav-default"
+          data-title="顧客の声"
+        >
+          <div class="section__inner">
+            <header class="section__header">
+              <p class="section__label">Voices</p>
+              <h2 class="section__title">顧客の声</h2>
+            </header>
+            <div class="section__body section__body--placeholder">
+              <p class="placeholder">現在、準備中です。導入企業様のコメントは順次掲載いたします。</p>
+            </div>
+          </div>
+        </section>
+        <!-- END: voices -->
+
+        <!-- BEGIN: contact -->
+        <section
           id="contact"
-          class="scroll-point"
+          class="scroll-point section section--tone"
+          data-accordion="normal"
+          data-class="nav-default"
+          data-title="お問い合わせ"
         >
-          <h2>Contact</h2>
-          <div class="contact-wrapp">
-            <div class="contact-text-wrapp">
-              <p class="contact-text">
-                「コミュニケーションデザインラボ -
-                佐藤研究室」では学生の研究生を募集しています。興味がある方はお気軽にご連絡ください。
+          <div class="section__inner section__inner--center">
+            <header class="section__header">
+              <p class="section__label">Contact</p>
+              <h2 class="section__title">プロジェクトのご相談</h2>
+            </header>
+            <div class="section__body section__body--center">
+              <p>
+                DX推進や新規事業開発に関するご相談は以下のフォームよりご連絡ください。担当より2営業日以内にご連絡いたします。
               </p>
-              <span id="message">
-                <span class="check">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="13"
-                    height="12"
-                    viewBox="0 0 13 12"
-                    fill="none"
-                  >
-                    <path
-                      d="M2 6L4.46154 9L10 3"
-                      stroke="#2269D3"
-                      stroke-width="1.5"
-                    />
-                  </svg>
-                </span>
-                <span class="text">メールアドレスをコピーしました</span>
-              </span>
-              <input
-                id="tagText"
-                type="text"
-                value="sample@test.co.jp"
-                hidden
-                readonly
-              />
-              <button id="contact-btn" class="contact-btn">
-                <svg viewBox="0 0 14 11">
-                  <use
-                    xlink:href="./assets/images/ico/splite.svg#ico-mail"
-                  ></use>
-                </svg>
-                お問い合わせ
-              </button>
-            </div>
-            <div>
-              <div>
-                <p class="contact-access">アクセス</p>
-                <div class="contact-adress">
-                  <p>〒000-0000</p>
-                  <p>東京都千代田区0-0-0帝都大学千代田キャンパス3号館201号室</p>
-                </div>
-              </div>
-              <iframe
-                class="googlemap"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.828030689842!2d139.7645498754798!3d35.681236172587326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1698374467641!5m2!1sja!2sjp"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
+              <a
+                class="cta-button"
+                href="https://forms.gle/REPLACE_ME"
+                target="_blank"
+                rel="noopener"
               >
-              </iframe>
+                Googleフォームで問い合わせる
+              </a>
             </div>
           </div>
         </section>
-        <!-- END Contact -->
+        <!-- END: contact -->
       </div>
     </main>
-
-    <!-- START フッター -->
     <footer>
       <div class="footer-link">
         <p class="footer-link-text">Created with</p>
-        <a href="#" target="_blank"
-          ><img src="assets/images/ico/logo-academeia.svg"
-        /></a>
+        <a href="#hero" class="footer-logo" aria-label="トップへ戻る">
+          <img src="assets/images/logo-lab.svg" alt="NovaLink Solutions" />
+        </a>
       </div>
       <div class="footer-copyright">
-        Copyright (C) 研究室名. All Rights Reserved.
+        &copy; NovaLink Solutions Inc. All Rights Reserved.
       </div>
     </footer>
-    <!-- END フッターの要素 -->
   </body>
-  <!-- END ここまでデザインの要素を入れていく -->
 </html>
