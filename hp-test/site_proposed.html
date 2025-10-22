@@ -1,0 +1,611 @@
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3M0FS3CY8P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-3M0FS3CY8P');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>企業向けWEBサイトテンプレート</title>
+    <meta name="description" content="企業向けWEBサイトテンプレート" />
+    <link rel="icon" href="./assets/images/common/favicon.ico" sizes="any" />
+    <!-- 32×32 -->
+    <link
+      rel="icon"
+      href="./assets/images/common/icon.svg"
+      type="image/svg+xml"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="./assets/images/common/apple-touch-icon.png"
+    />
+    <!-- 180×180 -->
+    <!-- og -->
+    <meta property="og:url" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="企業向けWEBサイトテンプレート" />
+    <meta property="og:image" content="./assets/images/common/ogp.jpg" />
+    <meta property="og:description" content="企業向けWEBサイトテンプレート" />
+    <meta property="og:site_name" content="企業向けWEBサイトテンプレート" />
+    <meta property="og:locale" content="ja_JP" />
+    <!-- x -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:title" content="企業向けWEBサイトテンプレート" />
+    <meta name="twitter:description" content="企業向けWEBサイトテンプレート" />
+    <meta name="twitter:image" content="./assets/images/common/ogp.jpg" />
+    <meta name="twitter:image:alt" content="企業向けWEBサイトテンプレート" />
+    <meta name="twitter:dnt" content="on" />
+    <!-- fonts -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap");
+    </style>
+    <!-- style sheet -->
+    <link rel="stylesheet" href="./assets/css/destyle.css" />
+    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/simplebar@latest/dist/simplebar.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <style>
+      /* Override: use clip-path notch instead of :after overlay */
+      nav .current {
+        --notch: 0.67lh;
+        clip-path: polygon(0 0, calc(100% - var(--notch)) 0, 100% var(--notch), 100% 100%, 0 100%);
+      }
+      nav .current::after { content: none !important; }
+    </style>
+    <!-- Javascript -->
+    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+    <script src="./assets/js/library.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </head>
+
+  <!-- START ここからデザインの要素を入れていく -->
+  <body>
+    <!-- START header -->
+    <!-- <header id="header">
+      <div class="header-contents">
+        <a href="#" class="header-title">
+          <div class="header-box">
+            <img src="assets/images/logo-lab.svg"/>
+          </div>
+          <div class="header-name">
+            <h1 class="header-name-wrapp">
+              <span class="header-name-wrapp-ja"
+                >株式会社サンプル - コーポレートサイト</span>
+                <span class="header-name-wrapp-en"
+                >Communication Design Laboratory</span
+              >
+            </h1>
+          </div>
+        </a>
+        <button id="burger" class="is-sp" type="button">
+          <span class="header-burger"></span>
+          <span class="header-burger"></span>
+          <span class="header-burger"></span>
+        </button>
+      </div>
+      <div class="logo-university-pc is-pc">
+        <img src="" alt="" />
+      </div>
+    </header> -->
+    <!-- END header -->
+
+    <main>
+      <!-- START グローバルナビ -->
+      <nav id="g-nav">
+        <div class="nav-inner">
+          <p>Menu</p>
+          <div id="nav-list"></div>
+          <div class="logo-university">
+            <img src="assets/images/logo-university.svg"/>
+          </div>
+        </div>
+        <span class="overlay"></span>
+      </nav>
+      <!-- END グローバルナビ -->
+      <div class="main-contents">
+      <!-- START メインビジュアル -->
+      <div class="mv">
+        <picture class="mv">
+          <img src="./assets/images/sample-mv.png" alt="Example image" />
+        </picture>
+
+        <!-- ← ここ（picture の“直後・同じ階層”） -->
+        <div class="mv-copy" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:2rem; z-index:2;">
+          <div style="background:rgba(255,255,255,0.72); backdrop-filter:saturate(120%) blur(6px); border-radius:16px; padding:24px 28px; max-width:960px; margin:0 auto;">
+            <h1 style="font-size:clamp(20px,3vw,36px); line-height:1.4; margin:0 0 8px;">採用を“仕組み化”して、成果を再現可能に。</h1>
+            <p style="font-size:clamp(14px,2vw,18px); line-height:1.8; margin:0;">戦略設計からチャネル運用、内製化の仕組みづくりまで。短期の採用数と、中長期の採用力を同時に高めます。</p>
+          </div>
+        </div>
+      </div>
+      <!-- END メインビジュアル -->
+
+
+        <!-- START NEWS -->
+        <section data-accordion="normal"
+          data-class="nav-default"
+          data-title="NEWS"
+          id="news"
+          class="scroll-point"
+        >
+          <h2>NEWS</h2>
+          <ul class="news-li-wrapp">
+            <li class="news-item is-link" data-more="">
+              <div class="news-date">2023.10.05</div>
+              <div class="news-text">
+                <div class="news-title">
+                  プレスリリース：新サービス「Sample Analytics」提供開始
+                </div>
+                <a href="#" target="_blank" class="link"
+                  >記事を見る<span class="ico"
+                    ><svg viewBox="0 0 14 12">
+                      <use
+                        xlink:href="./assets/images/ico/splite.svg#ico-link"
+                      ></use></svg></span
+                ></a>
+              </div>
+            </li>
+            <li class="news-item is-link" data-more="">
+              <div class="news-date">2023.10.05</div>
+              <div class="news-text">
+                <div class="news-title">
+                  お知らせ：組織体制変更と新役員就任のご案内
+                </div>
+                <a href="#" target="_blank" class="link"
+                  >記事を見る<span class="ico"
+                    ><svg viewBox="0 0 14 12">
+                      <use
+                        xlink:href="./assets/images/ico/splite.svg#ico-link"
+                      ></use></svg></span
+                ></a>
+              </div>
+            </li>
+            <li class="news-item is-link" data-more="">
+              <div class="news-date">2023.10.05</div>
+              <div class="news-text">
+                <div class="news-title">
+                  事例公開：データ活用で業務効率20％改善
+                </div>
+                <a href="#" target="_blank" class="link"
+                  >記事を見る<span class="ico"
+                    ><svg viewBox="0 0 14 12">
+                      <use
+                        xlink:href="./assets/images/ico/splite.svg#ico-link"
+                      ></use></svg></span
+                ></a>
+              </div>
+            </li>
+            <li class="news-item is-link" data-more="">
+              <div class="news-date">2023.10.05</div>
+              <div class="news-text">
+                <div class="news-title">
+                  イベント登壇：〇〇カンファレンス2023に出展・講演
+                </div>
+                <a href="#" target="_blank" class="link"
+                  >記事を見る<span class="ico"
+                    ><svg viewBox="0 0 14 12">
+                      <use
+                        xlink:href="./assets/images/ico/splite.svg#ico-link"
+                      ></use></svg></span
+                ></a>
+              </div>
+            </li>
+            <li class="news-item is-link" data-more="">
+              <div class="news-date">2023.10.05</div>
+              <div class="news-text">
+                <div class="news-title">
+                  メディア掲載：日経クロステックに当社の取り組みが紹介
+                </div>
+                <a href="#" target="_blank" class="link"
+                  >記事を見る<span class="ico"
+                    ><svg viewBox="0 0 14 12">
+                      <use
+                        xlink:href="./assets/images/ico/splite.svg#ico-link"
+                      ></use></svg></span
+                ></a>
+              </div>
+            </li>
+          </ul>
+          <button class="more-btn">
+            <svg viewBox="0 0 13 3">
+              <use xlink:href="./assets/images/ico/splite.svg#ico-more"></use>
+            </svg>
+            もっと見る
+          </button>
+        </section>
+        <!-- END NEWS -->
+
+        <!-- START プロフィール -->
+        <section data-accordion="normal"
+          data-class="nav-default"
+          data-title="代表プロフィール"
+          id="profile"
+          class="scroll-point"
+        >
+          <h2>代表プロフィール</h2>
+
+          <div class="profile-grid two-cols">
+            <!-- 左：本文（メッセージ＋経歴） -->
+            <article class="profile-main">
+              <section class="message">
+                <h3 class="subttl">メッセージ</h3>
+                <p>
+                  採用は「成果」と「再現性」の両輪です。短期の採用数を確保するだけでなく、
+                  翌期以降も機能する運用設計と標準化を重視しています。戦略立案からチャネル運用、
+                  選考OS整備、ATS設定、ドキュメント化までを一貫して実装し、自走できる採用組織づくりをご支援します。
+                </p>
+              </section>
+
+              <section class="bio">
+                <h3 class="subttl">経歴</h3>
+                <p>
+                  1977年生まれ。早稲田大学大学院 法学研究科修了。グローバル食品メーカーでベトナム赴任を経験後、
+                  労働力の流動性に関する課題意識から人材業界へ。国内大手日系人材会社およびスタートアップにて、
+                  学生500名超・転職者1,000名超のキャリアカウンセリングを実施。
+                </p>
+                <p>
+                  その後、外資系飲食チェーン、外資系IT、外資系人材サービスなどのグローバル企業で採用担当を歴任。
+                  さらに外資系プロフェッショナルファームの日本組織および外資系総合コンサルティングのAPACにおいて、
+                  日本のエグゼクティブ採用をリード。
+                </p>
+                <p>
+                  併行して、複数企業の採用コンサルティングやスカウト運用を支援し、
+                  採用実務者が持続可能なキャリアを構築できる仕組みづくりに取り組む。2025年10月に当社創業。
+                </p>
+              </section>
+            </article>
+
+            <!-- 右：写真 → 氏名・肩書（縦積み） -->
+            <aside class="profile-side">
+              <picture class="avatar">
+                <img src="./assets/images/sample-profile.png" alt="代表者写真" />
+              </picture>
+              <div class="nameblock">
+                <p class="role">代表取締役</p>
+                <h3 class="name">内川 礼（UCHIKAWA Rei）</h3>
+                <p class="subtitle">Founder / CEO / Lead Recruit Ops</p>
+              </div>
+            </aside>
+          </div>
+        </section>
+        <!-- END プロフィール -->
+
+        <!-- START 研究テーマ -->
+        <section data-accordion="normal"
+          data-class="nav-default"
+          data-title="サービス"
+          id="themes"
+          class="scroll-point"
+        >
+          <h2>サービス</h2>
+          <ul class="theme-wrapp">
+            <li class="theme-item">
+              <h3 class="h3-number">採用BPO（計画〜運用の一括支援）</h3>
+              <div class="theme-body">
+                <p>採用計画・KPI/ファネル設計、選考OS整備、チャネル/ベンダー運用までを一気通貫で伴走。大量採用からピンポイント採用まで対応します。</p>
+              </div>
+            </li>
+            <li class="theme-item">
+              <h3 class="h3-number">ダイレクト採用／スカウト運用</h3>
+              <div class="theme-body">
+                <p>媒体運用方針の設計、スカウト文面最適化、週次GAP分析と入替基準運用で、応募〜内定の歩留まりを改善します。</p>
+              </div>
+            </li>
+            <li class="theme-item">
+              <h3 class="h3-number">採用内製化・ATS／選考OS支援</h3>
+              <div class="theme-body">
+                <p>運用手順の標準化、ATS選定/設定、評価スコアカード、ワンデイ選考会運営設計など、再現可能な仕組みを実装します。</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <!-- START 提供価値 -->
+        <section data-accordion="normal"
+          data-class="nav-default"
+          data-title="提供価値"
+          id="motto"
+          class="scroll-point"
+        >
+          <h2>提供価値</h2>
+          <ul class="motto-wrapp">
+            <li>
+              <h3>短期成果 × 仕組み化の同時実現</h3>
+              <p>「今期の採用数」を確保しつつ、翌期以降に再現できる運用標準（手順書・ダッシュボード・スコアカード）を残します。</p>
+            </li>
+            <li>
+              <h3>職種レンジと実務知</h3>
+              <p>法人営業・コンサル・エンジニア・管理部門など幅広い職種で、ダイレクト採用と選考OSの両輪を運用します。</p>
+            </li>
+            <li>
+              <h3>ドキュメントと引き継ぎ性</h3>
+              <p>週次レポートと運用ドキュメントを整備し、担当変更時も途切れない“資産”として機能させます。</p>
+            </li>
+          </ul>
+        </section>
+        <!-- END 提供価値 -->
+        
+        <!-- START 支援実績 -->
+        <section data-accordion="normal"
+          data-class="nav-default"
+          data-title="支援実績"
+          id="cases"
+          class="scroll-point"
+        >
+          <h2>支援実績</h2>
+
+          <!-- 中途 -->
+          <h3 class="case-group-title">中途</h3>
+          <ul class="cases-wrapp">
+            <li class="case-item">
+              <h4>医療法人</h4>
+              <p><strong>対象：</strong>経営企画／法務部長／新規事業開発リード／ITマネジメントリード／人事担当</p>
+              <p><strong>施策：</strong>採用アドバイザリー／要件整理・選考設計／チャネル方針の策定・運用</p>
+              <p><strong>成果：</strong>全ポジション採用完了、契約続行中</p>
+            </li>
+
+            <li class="case-item">
+              <h4>医療機器メーカー</h4>
+              <p><strong>対象：</strong>営業職（大量採用）</p>
+              <p><strong>施策：</strong>採用ディレクション（エージェントコントロール／媒体運用／一部ダイレクト）</p>
+              <p><strong>成果：</strong>35名採用完了</p>
+            </li>
+
+            <li class="case-item">
+              <h4>教育業界企業</h4>
+              <p><strong>対象：</strong>法人営業職</p>
+              <p><strong>施策：</strong>ダイレクト採用／スカウト運用</p>
+              <p><strong>成果：</strong>13名採用完了</p>
+            </li>
+
+            <li class="case-item">
+              <h4>ソフトウェアハウス</h4>
+              <p><strong>対象：</strong>経営企画（課長〜部長）／事業開発／投資開発／デジタルマーケ</p>
+              <p><strong>施策：</strong>ダイレクト採用／スカウト運用</p>
+              <p><strong>成果：</strong>7名採用完了</p>
+            </li>
+
+            <li class="case-item">
+              <h4>IT企業</h4>
+              <p><strong>対象：</strong>Webディレクター／PMO／AIエンジニア</p>
+              <p><strong>施策：</strong>ダイレクト採用／スカウト運用</p>
+              <p><strong>成果：</strong>3名採用完了</p>
+            </li>
+
+            <li class="case-item">
+              <h4>化学メーカー</h4>
+              <p><strong>対象：</strong>生産技術／動力</p>
+              <p><strong>施策：</strong>ダイレクト採用／スカウト運用</p>
+              <p><strong>成果：</strong>2名採用完了</p>
+            </li>
+
+            <li class="case-item">
+              <h4>流通業界企業</h4>
+              <p><strong>対象：</strong>オープンイノベーション担当課長</p>
+              <p><strong>施策：</strong>チャンネル戦略の策定・実行</p>
+              <p><strong>成果：</strong>1名採用完了</p>
+            </li>
+          </ul>
+
+          <!-- 新卒 -->
+          <h3 class="case-group-title">新卒</h3>
+          <ul class="cases-wrapp">
+            <li class="case-item">
+              <h4>オートバイメーカー</h4>
+              <p><strong>対象年度：</strong>2025年新卒</p>
+              <p><strong>施策：</strong>新卒採用アドバイザリー／チャンネル戦略／ダイレクトスカウト</p>
+            </li>
+
+            <li class="case-item">
+              <h4>医療法人</h4>
+              <p><strong>対象年度：</strong>2026年・2027年新卒</p>
+              <p><strong>施策：</strong>新卒採用アドバイザリー／カジュアル面談運用／内定者フォロー</p>
+            </li>
+
+            <li class="case-item">
+              <h4>中古自動車販売企業</h4>
+              <p><strong>対象年度：</strong>2027年新卒</p>
+              <p><strong>施策：</strong>新卒採用オペレーション（運用設計・実務伴走）</p>
+            </li>
+          </ul>
+        </section>
+        <!-- END 支援実績 -->
+
+        <!-- START Contact -->
+        <section data-accordion="normal"
+          data-class="nav-default"
+          data-title="Contact"
+          id="contact"
+          class="scroll-point"
+        >
+          <h2>Contact</h2>
+          <div class="contact-wrapp">
+            <div class="contact-text-wrapp">
+              <p class="contact-text">
+                お問い合わせは下記よりお気軽にご連絡ください。内容を確認のうえ、担当よりご連絡いたします。
+              </p>
+              <!-- 角丸・水色枠（フォーム） -->
+              <div class="contact-form-card">
+                <p id="msg-error" class="msg error" aria-live="polite">未入力の項目があります。入力内容をご確認ください。</p>
+                <p id="msg-success" class="msg success" aria-live="polite">送信しました。ありがとうございます。</p>
+
+                <!-- Form本体（参照先そのまま） -->
+                <iframe name="hidden_iframe" style="display:none;" title="hidden"></iframe>
+                <form id="gform"
+                  action="https://docs.google.com/forms/d/e/1FAIpQLSed8OzEj6umMsSowWS_fsfe0XKxi682Y9WlElkGzdOot6ogFA/formResponse"
+                  method="POST" target="hidden_iframe" novalidate>
+
+                  <!-- 氏名（姓・名） -->
+                  <div class="grid">
+                    <div class="field">
+                      <div class="label">氏名 <span class="badge">必須</span></div>
+                      <input id="lastName" class="box" type="text" name="entry.346342012" placeholder="姓">
+                    </div>
+                    <div class="field">
+                      <div class="label" style="visibility:hidden">名</div>
+                      <input id="firstName" class="box" type="text" name="entry.591847786" placeholder="名">
+                    </div>
+                  </div>
+
+                  <!-- ふりがな -->
+                  <div class="grid" style="margin-top:12px">
+                    <div class="field">
+                      <div class="label">ふりがな <span class="badge">必須</span></div>
+                      <input id="kanaLast" class="box" type="text" name="entry.1525717319" placeholder="せい">
+                    </div>
+                    <div class="field">
+                      <div class="label" style="visibility:hidden">めい</div>
+                      <input id="kanaFirst" class="box" type="text" name="entry.1044190374" placeholder="めい">
+                    </div>
+                  </div>
+
+                  <!-- 所属 -->
+                  <div class="grid grid-1" style="margin-top:12px">
+                    <div class="field">
+                      <div class="label">所属 <span class="badge">必須</span></div>
+                      <input id="company" class="box" type="text" name="entry.2039809426" placeholder="会社・所属名">
+                    </div>
+                  </div>
+
+                  <!-- メール＋確認 -->
+                  <div class="grid" style="margin-top:12px">
+                    <div class="field">
+                      <div class="label">メールアドレス <span class="badge">必須</span></div>
+                      <input id="email" class="box" type="email" name="entry.1258844240" placeholder="you@example.com">
+                    </div>
+                    <div class="field">
+                      <div class="label">メールアドレス（確認） <span class="badge">必須</span></div>
+                      <input id="email2" class="box" type="email" name="entry.859529256" placeholder="確認のため再入力">
+                    </div>
+                  </div>
+
+                  <!-- お問い合わせ内容 -->
+                  <div class="grid grid-1" style="margin-top:12px">
+                    <div class="field">
+                      <div class="label">お問い合わせ内容 <span class="badge">必須</span></div>
+                      <!-- 重複ID回避のため textarea の id を messageText に変更 -->
+                      <textarea id="messageText" class="box" name="entry.567249329" rows="6" placeholder="ご用件を入力してください"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="actions">
+                    <button id="submitBtn" class="btn" type="submit">送信</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div>
+
+              <!-- フォームの簡易バリデーション -->
+          <script>
+            const form = document.getElementById('gform');
+            const btn  = document.getElementById('submitBtn');
+            const msgErr = document.getElementById('msg-error');
+            const msgOk  = document.getElementById('msg-success');
+            const requiredIds = ['lastName','firstName','kanaLast','kanaFirst','company','email','email2','messageText'];
+
+            document.querySelector('iframe[name="hidden_iframe"]').addEventListener('load', () => {
+              btn.disabled = false;
+              msgErr.style.display = 'none';
+              msgOk.style.display  = 'block';
+              form.reset();
+            });
+
+            form.addEventListener('submit', (e) => {
+              e.preventDefault();
+              msgErr.style.display = 'none';
+              msgOk.style.display  = 'none';
+
+              for (const id of requiredIds) {
+                if (!document.getElementById(id).value.trim()) {
+                  msgErr.textContent = '未入力の項目があります。入力内容をご確認ください。';
+                  msgErr.style.display = 'block';
+                  return;
+                }
+              }
+              if (document.getElementById('email').value.trim() !== document.getElementById('email2').value.trim()) {
+                msgErr.textContent = 'メールアドレス（確認）が一致しません。';
+                msgErr.style.display = 'block';
+                return;
+              } else {
+                msgErr.textContent = '未入力の項目があります。入力内容をご確認ください。';
+              }
+
+              btn.disabled = true;
+              form.submit();
+            });
+          </script>
+        </section>
+        <!-- END Contact -->
+        
+        <!-- START 会社概要 -->
+        <section data-accordion="normal"
+          data-class="nav-default"
+          data-title="会社概要"
+          id="company"
+          class="scroll-point"
+        >
+          <h2>会社概要</h2>
+          <div class="company-card">
+            <dl class="company-def">
+              <dt>会社名</dt>
+              <dd>サンプル株式会社</dd>
+
+              <dt>所在地</dt>
+              <dd>〒100-0000 東京都千代田区丸の内0-0-0 サンプルビル 10F</dd>
+
+              <dt>代表者</dt>
+              <dd>内川 礼（UCHIKAWA Rei）</dd>
+
+              <dt>設立</dt>
+              <dd>2025年10月</dd>
+
+              <dt>資本金</dt>
+              <dd>1,000万円</dd>
+
+              <dt>事業内容</dt>
+              <dd>
+                <ul>
+                  <li>採用BPO（計画〜運用の一括支援）</li>
+                  <li>ダイレクト採用／スカウト運用</li>
+                  <li>採用内製化・ATS／選考OS支援</li>
+                </ul>
+              </dd>
+
+              <dt>主要取引先</dt>
+              <dd>各業界の法人企業（医療、製造、IT、教育 ほか）</dd>
+
+              <dt>お問い合わせ</dt>
+              <dd><a href="#contact">お問い合わせフォーム</a>よりご連絡ください。</dd>
+            </dl>
+          </div>
+        </section>
+        <!-- END 会社概要 -->
+      </div>
+    </main>
+
+    <!-- START フッター -->
+    <!-- <footer>
+      <div class="footer-link">
+        <p class="footer-link-text">Created with</p>
+        <a href="#" target="_blank"
+          ><img src="assets/images/ico/logo-academeia.svg"
+        /></a>
+      </div>
+      <div class="footer-copyright">
+        Copyright (C) 研究室名. All Rights Reserved.
+      </div>
+    </footer> -->
+    <!-- END フッターの要素 -->
+    <script src="./assets/js/bubbles.js"></script>
+  </body>
+  <!-- END ここまでデザインの要素を入れていく -->
+</html>

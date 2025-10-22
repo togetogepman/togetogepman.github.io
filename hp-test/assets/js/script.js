@@ -1,278 +1,423 @@
-﻿(() => {
+(() => {
   "use strict";
 
   document.addEventListener("DOMContentLoaded", () => {
-    const body = document.body;
-    const header = document.getElementById("header");
-    const burger = document.getElementById("burger");
-    const nav = document.getElementById("g-nav");
-    const navInner = nav ? nav.querySelector(".nav-inner") : null;
-    const navOverlay = nav ? nav.querySelector(".overlay") : null;
-    const closeTriggers = nav ? nav.querySelectorAll("[data-close]") : [];
-    const navListContainer = document.getElementById("nav-list");
-    /* PATCH: 2025-10-02 */
-    const sections = Array.from(document.querySelectorAll("main section.scroll-point[id]"))
-      .filter((section) => section.id !== "hero"); // heroセクションを除外
+    // ... (大學ロゴ複製, グローバルナビ生成 - keep these)
 
-    // 大学ロゴをPC用ヘッダーに複製
-    const mobileLogo = document.querySelector(".logo-university img");
-    const desktopLogo = document.querySelector(".logo-university-pc img");
-    if (mobileLogo && desktopLogo) {
-      desktopLogo.setAttribute("src", mobileLogo.getAttribute("src") || "");
-      desktopLogo.setAttribute("alt", mobileLogo.getAttribute("alt") || "");
-    }
-
-    // グローバルナビをセクションから動的生成
-    if (navListContainer && sections.length) {
+    // @@@@ コンテンツのセクションを見てグローバルナビに項目を生成
+    const globalNav = document.getElementById("nav-list");
+    const sections = document.querySelectorAll("section.scroll-point");
+    const navMap = new Map();
+    function createGlobalNav() {
       const navList = document.createElement("ul");
       sections.forEach((section) => {
-        const title = section.getAttribute("data-title");
-        if (!title || section.id === "hero") return; // トップセクションを除外
-        const listItem = document.createElement("li");
-        const dataClass = section.getAttribute("data-class");
-        const dataAccordion = section.getAttribute("data-accordion");
-        if (dataClass) {
-          listItem.classList.add(dataClass);
-        }
-        if (dataAccordion) {
-          listItem.classList.add(dataAccordion);
-        }
+        const sectionTitle = section.getAttribute("data-title");
+        const sectionUniqeClass = section.getAttribute("data-class");
+        const sectionIsAccordion = section.getAttribute("data-accordion");
+
+        const navItem = document.createElement("li");
+        if (sectionUniqeClass) navItem.classList.add(sectionUniqeClass);
+        if (sectionIsAccordion) navItem.classList.add(sectionIsAccordion);
+        navItem.classList.add("nav-item");
+        navItem.dataset.target = section.id;
         const link = document.createElement("a");
-        link.href = "#" + section.id;
-        link.textContent = title;
-        listItem.appendChild(link);
-        navList.appendChild(listItem);
+        link.href = `#${section.id}`;
+        link.textContent = sectionTitle || section.id;
+
+        if (sectionIsAccordion === "nav-drop") {
+          const dropDiv = document.createElement("div");
+          dropDiv.classList.add("nav-drop-main");
+          dropDiv.appendChild(link);
+
+          const dropdownImg = document.createElement("div");
+          dropdownImg.innerHTML =
+            '<img src="./assets/images/ico/no-farames/ico-dropdown.svg" />';
+
+          const ul = document.createElement("ul");
+
+          navItem.appendChild(dropDiv);
+          dropDiv.appendChild(dropdownImg);
+          navItem.appendChild(ul);
+        } else {
+          navItem.appendChild(link);
+        }
+
+        navList.appendChild(navItem);
+        navMap.set(section.id, navItem);
       });
-      navListContainer.innerHTML = "";
-      navListContainer.appendChild(navList);
+
+      if (globalNav) globalNav.appendChild(navList);
     }
 
-    // ハンバーガーメニュー制御
-    let isMenuOpen = false;
+    createGlobalNav();
 
-    const setMenuState = (state) => {
-      if (!nav || !navInner) return;
-      isMenuOpen = state;
-      body.classList.toggle("nav-open", state);
-      body.style.overflow = state ? "hidden" : "";
-      if (burger) {
-        burger.setAttribute("aria-expanded", state ? "true" : "false");
+    // 各 nav-drop セクションごとにサブメニュー生成 (keep this)
+    sections.forEach((section) => {
+      const isDrop = section.getAttribute("data-accordion") === "nav-drop";
+      if (!isDrop) return;
+      const navLi = navMap.get(section.id);
+      if (!navLi) return;
+      const accordionWrapp = navLi.querySelector("ul");
+      if (!accordionWrapp) return;
+      const dropSlides = section.querySelectorAll(".tab-wrapp .swiper-slide");
+      dropSlides.forEach((dropSlide, index) => {
+        const acoItem = document.createElement("li");
+        const acoHref = document.createElement("a");
+        acoHref.href = `#${section.id}`;
+        acoHref.textContent = dropSlide.getAttribute("data-index") || `Tab ${index + 1}`;
+        acoItem.setAttribute("data-slide", index + 1);
+        acoItem.appendChild(acoHref);
+        accordionWrapp.appendChild(acoItem);
+      });
+    });
+
+    // @@@@@ windowリサイズ時にリロードをさせる (Modify this - see next point)
+    const breakPoint = 769;
+    let resizeFlag;
+    window.addEventListener(
+      "load",
+      () => {
+        if (breakPoint < window.innerWidth) {
+          resizeFlag = false;
+        } else {
+          resizeFlag = true;
+        }
+        // Removed the call to resizeWindow() here
+      },
+      false
+    );
+
+    // Modify resizeWindow logic for more robust handling
+    let currentResizeState;
+    const handleResize = () => {
+        const newResizeState = window.innerWidth < breakPoint; // true for mobile, false for desktop
+        if (currentResizeState !== undefined && newResizeState !== currentResizeState) {
+            window.location.reload();
+        }
+        currentResizeState = newResizeState;
+    };
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('load', handleResize); // Also check on load
+
+    // バーガーメニュー (keep this block - see next point for mobile menu closing)
+
+    // IntersectionObserver によるスクロール連動ハイライト (Keep and modify slightly)
+    const observedSections = document.querySelectorAll("section.scroll-point");
+    const getHeaderH = () => {
+      const header = document.getElementById("header");
+      return header ? header.offsetHeight : 0;
+    };
+    const visibleRatios = new Map();
+
+    // Function to update current class based on IntersectionObserver data
+    function updateCurrentByIntersection() {
+      let maxId = null;
+      let maxRatio = 0;
+      observedSections.forEach((sec) => {
+        const ratio = visibleRatios.get(sec.id) || 0;
+        if (ratio > maxRatio) {
+          maxRatio = ratio;
+          maxId = sec.id;
+        }
+      });
+
+      // If no section is significantly visible, maybe default to the first one or no highlight
+      if (!maxId && observedSections.length > 0) {
+          maxId = observedSections[0].id; // Or handle as per design
       }
-      if (state) {
-        nav.style.display = "block";
-        requestAnimationFrame(() => {
-          if (navOverlay) {
-            navOverlay.style.opacity = "1";
-            navOverlay.style.pointerEvents = "auto";
-          }
-          navInner.style.transform = "translate3d(0, 0, 0)";
+      if (!maxId) return;
+
+      document
+        .querySelectorAll("#g-nav .nav-item.current")
+        .forEach((el) => el.classList.remove("current"));
+      const li = navMap.get(maxId);
+      if (li) li.classList.add("current");
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          // Store ratio only if intersecting
+          visibleRatios.set(id, entry.isIntersecting ? entry.intersectionRatio : 0);
         });
-      } else {
-        if (navOverlay) {
-          navOverlay.style.opacity = "0";
-          navOverlay.style.pointerEvents = "none";
-        }
-        navInner.style.transform = "translate3d(100%, 0, 0)";
-        const handleTransitionEnd = () => {
-          if (!isMenuOpen && nav) {
-            nav.style.display = "none";
-          }
-          navInner.removeEventListener("transitionend", handleTransitionEnd);
-        };
-        navInner.addEventListener("transitionend", handleTransitionEnd);
+        updateCurrentByIntersection();
+      },
+      {
+        root: null,
+        // Adjust thresholds based on how much of the section should be visible to be considered "current"
+        threshold: [0, 0.2, 0.5, 0.8, 1.0],
+        rootMargin: `-${getHeaderH()}px 0px 0px 0px`,
       }
-    };
+    );
+    observedSections.forEach((s) => io.observe(s));
 
-    const closeMenu = () => setMenuState(false);
+    // @@@@ ナビゲーションをセクションのスクロールと連動させてカレントを付け替える (REMOVE this block)
+    // 基準点の準備
+    // var elemTop = [];
+    // function PositionCheck() { ... }
+    // function ScrollAnime() { ... }
 
-    if (burger) {
-      burger.addEventListener("click", () => {
-        setMenuState(!isMenuOpen);
-      });
-    }
+    // ナビゲーションをクリックした際のスムーススクロール (Keep, but consider using scrollIntoView)
+    var navLinks = document.querySelectorAll("#g-nav a");
+    navLinks.forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        const elmHash = this.getAttribute("href");
+        const targetElement = document.querySelector(elmHash);
 
-    closeTriggers.forEach((trigger) => {
-      trigger.addEventListener("click", () => {
-        if (isMenuOpen) {
-          closeMenu();
-        }
-      });
-    });
+        if (targetElement) {
+          event.preventDefault();
+          const header = document.getElementById("header");
+          const headerH = header ? header.offsetHeight : 0; // Ensure header exists
 
-    // スムーススクロール共通関数
-    const scrollToTarget = (target) => {
-      if (!target) return;
-      const headerHeight = header ? header.offsetHeight : 0;
-      const rect = target.getBoundingClientRect();
-      const offset = Math.round(rect.top + window.scrollY - headerHeight);
-      window.scrollTo({
-        top: offset,
-        behavior: "smooth",
-      });
-    };
-
-    // ナビゲーションリンクのスムーススクロール
-    const navLinks = document.querySelectorAll("#g-nav a[href^='#']");
-    navLinks.forEach((link) => {
-      link.addEventListener("click", (event) => {
-        const hash = link.getAttribute("href");
-        if (!hash || hash === "#") return;
-        const target = document.querySelector(hash);
-        if (!target) return;
-        event.preventDefault();
-        scrollToTarget(target);
-        if (window.innerWidth <= 768 && isMenuOpen) {
-          closeMenu();
-        }
-      });
-    });
-
-    // ヒーローCTAのスクロール
-    const heroCta = document.querySelector("[data-scroll-target]");
-    if (heroCta) {
-      heroCta.addEventListener("click", (event) => {
-        const selector = heroCta.getAttribute("data-scroll-target");
-        if (!selector) return;
-        const target = document.querySelector(selector);
-        if (!target) return;
-        event.preventDefault();
-        scrollToTarget(target);
-      });
-    }
-
-    // スクロール位置に応じた現在地ハイライト
-    const scrollPoints = document.querySelectorAll(".scroll-point");
-    let sectionOffsets = [];
-
-    const updateOffsets = () => {
-      sectionOffsets = [];
-      scrollPoints.forEach((point) => {
-        const rect = point.getBoundingClientRect();
-        const headerHeight = header ? header.offsetHeight : 0;
-        sectionOffsets.push(Math.round(rect.top + window.scrollY - headerHeight));
-      });
-    };
-
-    let isScrolling = false; // スクロール中かどうかを示すフラグ
-
-    const updateCurrentNav = () => {
-      if (isScrolling) return;
-
-      const navItems = document.querySelectorAll("#g-nav .nav-default");
-      if (!navItems.length || !sectionOffsets.length) return;
-
-      const scroll = Math.round(window.scrollY);
-
-      navItems.forEach((item, index) => {
-        item.classList.add("current"); // 全てのナビゲーションを常に表示
-      });
-    };
-
-    // スクロール位置に基づいてナビゲーションを更新
-    const updateNavigation = () => {
-      const navLinks = document.querySelectorAll("#nav-list a");
-      const sections = document.querySelectorAll("main section.scroll-point[id]");
-      let activeSection = null;
-
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
-          activeSection = section;
-        }
-      });
-
-      navLinks.forEach((link) => {
-        link.classList.remove("active");
-        if (activeSection && link.getAttribute("href") === `#${activeSection.id}`) {
-          link.classList.add("active");
-        }
-      });
-    };
-
-    // スクロールイベントでナビゲーションを更新
-    window.addEventListener("scroll", updateNavigation);
-
-    // ナビゲーションのクリック挙動を修正
-    const navLinksClick = document.querySelectorAll("#nav-list a");
-    navLinksClick.forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        const targetId = link.getAttribute("href").substring(1);
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          const headerHeight = document.getElementById("header").offsetHeight;
-          const offset = targetSection.offsetTop - headerHeight;
-
-          // スクロール処理
-          window.scrollTo({
-            top: offset,
-            behavior: "smooth",
+          // Using scrollIntoView with scroll-margin-top CSS is generally more robust
+          targetElement.style.scrollMarginTop = `${headerH}px`;
+          targetElement.scrollIntoView({
+            behavior: "smooth"
           });
 
-          // クリックされたリンクを強制的にアクティブに設定
-          navLinksClick.forEach((navLink) => navLink.classList.remove("active"));
-          link.classList.add("active");
+          // Remove the temporary scroll-margin-top after scrolling (optional, can also be handled purely in CSS)
+          // setTimeout(() => {
+          //     targetElement.style.scrollMarginTop = '';
+          // }, 1000); // Adjust timeout as needed
         }
       });
     });
 
-    // 初期状態で何も選択されないようにする
-    window.addEventListener("load", () => {
-      const navLinks = document.querySelectorAll("#nav-list a");
-      navLinks.forEach((link) => link.classList.remove("active"));
+
+    // @@@@@ アコーディオン
+    const accordionButtons = document.querySelectorAll(".nav-drop-main");
+
+    accordionButtons.forEach((accordionBtn, index) => {
+      accordionBtn.addEventListener("click", (e) => {
+        const parentLi = e.target.closest("li");
+        const content = parentLi.querySelector("ul");
+        const isOpen = parentLi.classList.toggle("is-active");
+        if (isOpen) {
+          content.style.height = "auto";
+          const h = content.offsetHeight;
+          content.style.height = "0";
+          content.style.transition = "height 300ms";
+          content.offsetHeight;
+          content.style.height = h + "px";
+        } else {
+          content.style.height = "0";
+        }
+        accordionButtons.forEach((btn, i) => {
+          if (i !== index) {
+            btn.closest("li").classList.remove("is-active");
+            btn.nextElementSibling.style.height = "0";
+          }
+        });
+        const container = parentLi.closest(".scroll-control");
+        if (container !== null) {
+          container.classList.toggle("is-active", isOpen);
+        }
+      });
     });
 
-    window.addEventListener("load", () => {
-      updateOffsets();
-      updateCurrentNav();
+    // @@@@ タブスライド
+    var pvs;
+    var tabLength = document.querySelectorAll(".mySwiper .swiper-slide").length;
+
+    if (tabLength > 4) {
+      pvs = "4.5";
+    } else {
+      pvs = tabLength;
+    }
+
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: pvs,
+      watchSlidesProgress: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      on: {
+        init: () => {
+          const navLinks = document.querySelectorAll(".nav-drop ul li");
+          navLinks.forEach((link) => {
+            link.addEventListener("click", (event) => {
+              event.preventDefault();
+              const slideNumber = link.getAttribute("data-slide");
+              swiper2.slideTo(slideNumber - 1);
+            });
+          });
+          // moreボタン
+        },
+      },
+    });
+    var swiper2 = new Swiper(".mySwiper2", {
+      spaceBetween: 10,
+      autoHeight: true,
+      simulateTouch: false,
+      thumbs: {
+        swiper: swiper,
+      },
     });
 
-    window.addEventListener("resize", () => {
-      updateOffsets();
-      if (window.innerWidth > 768 && isMenuOpen) {
-        closeMenu();
+    const num = 6;
+    const swiperWrap = document.querySelectorAll(".swiper-slide");
+
+    for (var i = 0; i < swiperWrap.length; i++) {
+      const swiperItemLists = swiperWrap[i].querySelectorAll(
+        ".swiper-slide ul li"
+      );
+      // listを一旦非表示
+      for (var e = num; e < swiperItemLists.length; e++) {
+        swiperItemLists[e].classList.add("is-hidden");
       }
-    });
-
-    window.addEventListener("scroll", () => {
-      updateCurrentNav();
-      updateNavigation();
+    }
+    const swiperBtns = document.querySelectorAll(".load-more");
+    swiperBtns.forEach((swiperBtn, i) => {
+      swiperBtn.addEventListener("click", () => {
+        const wrap = swiperBtn.parentElement.querySelector("ul");
+        const hiddenItems = wrap.querySelectorAll("li.is-hidden");
+        for (var i = 0; i < num && i < hiddenItems.length; i++) {
+          hiddenItems[i].classList.remove("is-hidden");
+        }
+        if (wrap.querySelectorAll("li.is-hidden").length === 0) {
+          swiperBtn.style.display = "none";
+        }
+      });
     });
 
     setTimeout(() => {
-      updateOffsets();
-      updateCurrentNav();
-    }, 400);
+      swiper2.update();
+    }, 450);
 
-    // calculateSectionOffsets関数を定義
-    const calculateSectionOffsets = () => {
-      sectionOffsets = Array.from(document.querySelectorAll("main section.scroll-point[id]"))
-        .map((section) => {
-          const headerHeight = header ? header.offsetHeight : 0;
-          return Math.round(section.offsetTop - headerHeight);
-        });
-      console.log("Recalculated Section Offsets:", sectionOffsets);
-    };
+    // function initSlideMoreButton(slideIndex) {
+    //   const currentSlide = swiper2.slides[slideIndex];
+    //   const loadMoreButton = currentSlide.querySelector(".load-more");
+    //   const listItems = currentSlide.querySelectorAll(".list-item");
+    //   const itemsToShow = 6;
+    //   let currentItemIndex = itemsToShow;
 
-    document.querySelectorAll("#nav-list a").forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        const targetId = link.getAttribute("href").replace("#", "");
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          const headerHeight = header ? header.offsetHeight : 0;
-          const targetOffset = targetSection.offsetTop - headerHeight;
+    //   if (listItems.length <= itemsToShow) {
+    //     loadMoreButton.style.display = "none";
+    //   }
 
-          console.log("Target Section ID:", targetId);
-          console.log("Target Offset:", targetOffset);
+    //   function toggleListItems() {
+    //     for (let i = 0; i < listItems.length; i++) {
+    //       if (i < currentItemIndex) {
+    //         listItems[i].style.display = "block";
+    //       } else {
+    //         listItems[i].style.display = "none";
+    //       }
+    //     }
+    //   }
 
-          window.scrollTo({
-            top: targetOffset,
-            behavior: "smooth",
-          });
+    //   toggleListItems();
+
+    //   loadMoreButton.addEventListener("click", function () {
+    //     currentItemIndex += itemsToShow;
+    //     toggleListItems();
+    //     if (currentItemIndex >= listItems.length) {
+    //       loadMoreButton.style.display = "none";
+    //     }
+    //   });
+    // }
+
+    // initSlideMoreButton(0); // 初期化
+
+    // initSlideMoreButton(swiper2.activeIndex);
+
+    // function initSlideMoreButton(slideIndex) {
+    //   const currentSlide = swiper2.slides[slideIndex];
+    //   const loadMoreButton = currentSlide.querySelector(".load-more");
+    //   const listItems = currentSlide.querySelectorAll(".list-item");
+    //   const itemsToShow = 6; // 1回に表示するアイテム数
+    //   let currentItemIndex = itemsToShow;
+
+    //   if (listItems.length <= itemsToShow) {
+    //     loadMoreButton.style.display = "none";
+    //   }
+
+    //   function toggleListItems() {
+    //     for (let i = 0; i < listItems.length; i++) {
+    //       if (i < currentItemIndex) {
+    //         listItems[i].style.display = "block";
+    //       } else {
+    //         listItems[i].style.display = "none";
+    //       }
+    //     }
+    //   }
+
+    //   toggleListItems(); // 初期表示
+
+    //   loadMoreButton.addEventListener("click", function () {
+    //     currentItemIndex += itemsToShow;
+    //     toggleListItems();
+    //     if (currentItemIndex >= listItems.length) {
+    //       loadMoreButton.style.display = "none";
+    //     }
+    //   });
+    // }
+
+    // @@@@ もっと見るボタン
+    function setupMoreButton(sectionSelector, moreNum) {
+      var section = document.querySelector(sectionSelector);
+      var listItems = section.querySelectorAll("[data-more]");
+      var listBtn = section.querySelector(".more-btn");
+
+      for (var i = moreNum; i < listItems.length; i++) {
+        listItems[i].classList.add("is-hidden");
+      }
+
+      listBtn.addEventListener("click", function () {
+        var hiddenItems = section.querySelectorAll("[data-more].is-hidden");
+
+        for (var i = 0; i < moreNum && i < hiddenItems.length; i++) {
+          hiddenItems[i].classList.remove("is-hidden");
+          hiddenItems[i].classList.add("is-visible");
+          hiddenItems[i].style.display = "block";
+          hiddenItems[i].style.opacity = 1;
+        }
+
+        if (section.querySelectorAll("[data-more].is-hidden").length === 0) {
+          listBtn.style.display = "none";
         }
       });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var list = section.querySelectorAll(".list li").length;
+        if (list < moreNum) {
+          listBtn.classList.add("is-btn-hidden");
+        }
+      });
+    }
+    setupMoreButton("#news", 3);
+    setupMoreButton("#member", 2);
+
+    // @@@@@ メールのコピー
+    const copyButton = document.getElementById("contact-btn");
+    const tagText = document.getElementById("tagText");
+    const message = document.getElementById("message");
+
+    copyButton.addEventListener("click", () => {
+      const tagValue = tagText.value;
+      copyToClipboard(tagValue);
     });
+
+    async function copyToClipboard(tagValue) {
+      try {
+        if (navigator.clipboard) {
+          await navigator.clipboard.writeText(tagValue);
+        } else {
+          document.execCommand("copy");
+        }
+
+        messageActive();
+      } catch (error) {
+        console.error("クリップボードへのコピーに失敗しました:", error);
+      }
+    }
+
+    function messageActive() {
+      message.classList.add("is-active");
+      setTimeout(() => {
+        message.classList.remove("is-active");
+      }, 1600);
+    }
   });
 })();
-
