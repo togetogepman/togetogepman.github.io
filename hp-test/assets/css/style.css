@@ -1641,3 +1641,15 @@ footer {
 @media (max-width: 768px){
   #company .company-def{ grid-template-columns:1fr; }
 }
+
+:root{
+  --brand: #2269d3;              /* ロゴ青 */
+  --side-rail-bg: #C1D5F3;       /* ← 上の候補から1つ選ぶ */
+}
+
+@media (min-width:769px){
+  .nav-inner{
+    background: var(--side-rail-bg);
+    border-right: 1px solid #d4dbe1; /* 既存線のまま */
+  }
+}
